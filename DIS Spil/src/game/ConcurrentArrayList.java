@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ConcurrentArrayList implements Iterable<Player>
 {
-	private List<Player> liste = new ArrayList<Player>(); 
+	private List<Player> liste = new ArrayList<Player>();
 	
 	public void add(Player p) {
 		liste.add(p);	
@@ -29,6 +29,7 @@ public class ConcurrentArrayList implements Iterable<Player>
 		// TODO Auto-generated method stub
 		return liste.iterator();
 	}
+
 	/*public class ConcurrentArrayListIterator<Player> implements Iterator<Player> {
 
 		@Override

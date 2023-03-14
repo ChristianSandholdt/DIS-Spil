@@ -2,7 +2,7 @@ package sock;
 import java.io.*;
 import java.net.*;
 // Denne er kun medtaget til Test-formål, skal IKKE anvendes.
-public class TCPClient {
+public class Klient {
 
 	public static void main(String argv[]) throws Exception{
 		String sentence;

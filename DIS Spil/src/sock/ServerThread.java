@@ -3,11 +3,9 @@ import java.net.*;
 import java.io.*;
 public class ServerThread extends Thread{
 	Socket connSocket;
-	common c;
 	
-	public ServerThread(Socket connSocket,common c) {
+	public ServerThread(Socket connSocket) {
 		this.connSocket = connSocket;
-		this.c=c; // Til Web-server opgaven skal denne ikke anvendes
 	}
 	public void run() {
 		try {
@@ -18,7 +16,7 @@ public class ServerThread extends Thread{
 			// The following two lines are only an example
 			
 			String clientSentence = inFromClient.readLine();
-			outToClient.writeBytes("Hej"+ c.getTekst() + '\n' );
+			outToClient.writeBytes("Hej" + '\n' );
 		
 		} catch (IOException e) {
 			e.printStackTrace();

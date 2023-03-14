@@ -167,9 +167,5 @@ public class Gui extends Application {
 		}
 		return b.toString();
 	}
-
-
-
-	
 }
 
