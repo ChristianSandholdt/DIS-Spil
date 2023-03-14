@@ -7,7 +7,8 @@ import java.util.Random;
 
 
 public class GameLogic {
-public static List<Player> players = new ArrayList<Player>();	
+
+	public static List<Player> players = new ArrayList<Player>();
 	public static Player me;
 	
 	
@@ -83,8 +84,8 @@ public static List<Player> players = new ArrayList<Player>();
 		}
 		return null;
 	}
-	
-	
-	
 
+	public static List<Player> getPlayers() {
+		return players;
+	}
 }

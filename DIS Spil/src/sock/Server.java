@@ -15,20 +15,6 @@ public class Server {
 		while (true) {
 			Socket connectionSocket = welcomeSocket.accept();
 			(new ServerThread(connectionSocket)).start();
-			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
-			DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
-			String clientSentence = inFromClient.readLine();
-			System.out.println(clientSentence);
-			if (clientSentence.isBlank() != true) {
-				outToClient.writeBytes("GameIsGo" + '\n' );
-				while (true) {
-					clientSentence = inFromClient.readLine();
-					System.out.println(clientSentence);
-				}
-			}
-			else {
-				outToClient.writeBytes("Du er en idiot" + '\n' );
-			}
 		}
 	}
 }
