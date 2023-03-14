@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DIS Spil/DIS Spil.iml" filepath="$PROJECT_DIR$/DIS Spil/DIS Spil.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DIS-Spil.iml" filepath="$PROJECT_DIR$/DIS-Spil.iml" />
+    </modules>
+  </component>
+</project>
