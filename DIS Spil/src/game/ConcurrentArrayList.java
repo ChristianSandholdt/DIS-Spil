@@ -30,7 +30,7 @@ public class ConcurrentArrayList implements Iterable<Player>
 		return liste.iterator();
 	}
 
-	/*public class ConcurrentArrayListIterator<Player> implements Iterator<Player> {
+	public class ConcurrentArrayListIterator<Player> implements Iterator<Player> {
 
 		@Override
 		public boolean hasNext() {
@@ -43,6 +43,6 @@ public class ConcurrentArrayList implements Iterable<Player>
 			// TODO Auto-generated method stub
 			return null;
 		}
-	
-}*/
+
+}
 }

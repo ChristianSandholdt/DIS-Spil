@@ -21,14 +21,19 @@ public class klientNetworkThread extends Thread {
 
     public void run() {
         try {
+            Thread.sleep(1000);
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(connSocket.getInputStream()));
             DataOutputStream outToServer = new DataOutputStream(connSocket.getOutputStream());
             // write a string split that gets the player x the player y and the player direction
-            // and then updates the player
-            String[] playerInfo = inFromServer.readLine().split(" ");
+            // and then updates the player on the screen
+            String[] playerInfo = inFromServer.readLine().split(",");
+            System.out.println(playerInfo[0] + " " + playerInfo[1] + " " + playerInfo[2]);
             pair pair = new pair(Integer.parseInt(playerInfo[0]), Integer.parseInt(playerInfo[1]));
             Gui.placePlayerOnScreen(pair, playerInfo[2]);
-        } catch (IOException e) {
+            while (true) {
+
+            }
+        } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
     }

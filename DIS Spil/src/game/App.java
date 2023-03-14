@@ -18,8 +18,8 @@ public class App {
 			String navn = inFromUser.readLine();
 			outToServer.writeBytes(navn + '\n');
 			System.out.println("Game is go");
-			Application.launch(Gui.class);
 			knt.start();
+			Application.launch(Gui.class);
 		}
 		else {
 			System.out.println("Game is not go");

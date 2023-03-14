@@ -16,9 +16,6 @@ public class GameLogic {
 		pair p=getRandomFreePosition();
 		me = new Player(name,p,"up");
 		players.add(me);
-		p=getRandomFreePosition();
-		Player harry = new Player("Kaj",p,"up");
-		players.add(harry);
 	}
 	
 	public static pair getRandomFreePosition()
@@ -72,8 +69,6 @@ public class GameLogic {
 			Gui.movePlayerOnScreen(oldpos,newpos,direction);
 			me.setLocation(newpos);
 		}
-		
-		
 	}
 	
 	public static Player getPlayerAt(int x, int y) {
@@ -83,9 +78,5 @@ public class GameLogic {
 			}
 		}
 		return null;
-	}
-
-	public static List<Player> getPlayers() {
-		return players;
 	}
 }
