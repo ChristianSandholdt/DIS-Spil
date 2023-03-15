@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ConcurrentArrayList implements Iterable<Player>
+public class
+ConcurrentArrayList implements Iterable<Player>
 {
 	private List<Player> liste = new ArrayList<Player>();
 	

@@ -30,7 +30,7 @@ public class ServerThread extends Thread{
 				StringBuilder sb = new StringBuilder();
 				String moveSet = inFromClient.readLine();
 				String[] moves = moveSet.split(",");
-				updatePlayer(GameLogic.me, Integer.parseInt(moves[0]), Integer.parseInt(moves[1]), moves[2]);
+				updatePlayer(player, Integer.parseInt(moves[0]), Integer.parseInt(moves[1]), moves[2]);
 
 				for (Player p : GameLogic.players) {
 					//updatePlayer(p,p.getXpos(),p.getXpos(),p.getDirection());
@@ -39,6 +39,7 @@ public class ServerThread extends Thread{
 				String playerInfo = sb.toString();
 				//System.out.println(playerInfo);
 				for (Player p : GameLogic.players) {
+					System.out.println(playerInfo);
 					p.getOutToClient().writeBytes(playerInfo + '\n');
 				}
 			}
