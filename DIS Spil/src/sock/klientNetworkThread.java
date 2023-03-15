@@ -40,9 +40,10 @@ public class klientNetworkThread extends Thread {
                     Gui.removePlayerOnScreen(pair);
                 }
                 GameLogic.players.clear();
-                for (int i = 0; i < playerInfo.length; i+= 4) {
+                for (int i = 0; i < playerInfo.length; i+= 5) {
                     pair pair = new pair(Integer.parseInt(playerInfo[i+1]), Integer.parseInt(playerInfo[i+2]));
                     Player p = new Player(playerInfo[i], pair, playerInfo[i+3]);
+                    p.addPoints(Integer.parseInt(playerInfo[i+4]));
                     GameLogic.players.add(p);
                 }
                 for (Player p : GameLogic.players){
