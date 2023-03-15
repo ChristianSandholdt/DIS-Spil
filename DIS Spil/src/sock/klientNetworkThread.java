@@ -46,12 +46,12 @@ public class klientNetworkThread extends Thread {
                     p.addPoints(Integer.parseInt(playerInfo[i+4]));
                     GameLogic.players.add(p);
                 }
-                Thread.sleep(100);
                 for (Player p : GameLogic.players){
                     pair pair = new pair(p.getXpos(), p.getYpos());
                     Gui.placePlayerOnScreen(pair, p.getDirection());
                     Gui.updateScoreTable();
                 }
+                Thread.sleep(50);
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
