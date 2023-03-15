@@ -51,7 +51,6 @@ public class klientNetworkThread extends Thread {
                     Gui.placePlayerOnScreen(pair, p.getDirection());
                     Gui.updateScoreTable();
                 }
-                Thread.sleep(50);
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
