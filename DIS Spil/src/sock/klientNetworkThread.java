@@ -33,7 +33,7 @@ public class klientNetworkThread extends Thread {
 //                pair pair = new pair(Integer.parseInt(playerInfo[0]), Integer.parseInt(playerInfo[1]));
 //                Gui.placePlayerOnScreen(pair, playerInfo[2]);
                 String serverData = inFromServer.readLine();
-                //System.out.println(serverData);
+                System.out.println(serverData);
                 String[] playerInfo = serverData.split(",");
                 for (Player p : GameLogic.players){
                     pair pair = new pair(p.getXpos(), p.getYpos());
@@ -46,6 +46,7 @@ public class klientNetworkThread extends Thread {
                     p.addPoints(Integer.parseInt(playerInfo[i+4]));
                     GameLogic.players.add(p);
                 }
+                Thread.sleep(100);
                 for (Player p : GameLogic.players){
                     pair pair = new pair(p.getXpos(), p.getYpos());
                     Gui.placePlayerOnScreen(pair, p.getDirection());
