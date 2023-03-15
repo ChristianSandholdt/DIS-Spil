@@ -31,7 +31,6 @@ public class ServerThread extends Thread{
 				String moveSet = inFromClient.readLine();
 				String[] moves = moveSet.split(",");
 				updatePlayer(player, Integer.parseInt(moves[0]), Integer.parseInt(moves[1]), moves[2]);
-
 				for (Player p : GameLogic.players) {
 					//updatePlayer(p,p.getXpos(),p.getXpos(),p.getDirection());
 					sb.append(p.getName() + "," + p.getXpos() + "," + p.getYpos() + "," + p.getDirection() + ",");

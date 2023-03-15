@@ -48,6 +48,7 @@ public class klientNetworkThread extends Thread {
                 for (Player p : GameLogic.players){
                     pair pair = new pair(p.getXpos(), p.getYpos());
                     Gui.placePlayerOnScreen(pair, p.getDirection());
+                    Gui.updateScoreTable();
                 }
             }
         } catch (IOException | InterruptedException e) {
