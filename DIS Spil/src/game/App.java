@@ -8,10 +8,10 @@ import sock.klientNetworkThread;
 public class App {
 	static DataOutputStream outToServer;
 	public static void main(String[] args) throws Exception {
-		Socket suckIt = new Socket("localhost", 6969);
-		klientNetworkThread knt = new klientNetworkThread(suckIt);
-		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(suckIt.getInputStream()));
-		outToServer = new DataOutputStream(suckIt.getOutputStream());
+		Socket s = new Socket("localhost", 6969);
+		klientNetworkThread knt = new klientNetworkThread(s);
+		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(s.getInputStream()));
+		outToServer = new DataOutputStream(s.getOutputStream());
 		outToServer.writeBytes("ConnectionEstablished" + '\n');
 		if (inFromServer.readLine().equals("GameIsGo")) {
 			System.out.println("Indtast spillernavn");
