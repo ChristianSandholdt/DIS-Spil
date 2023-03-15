@@ -47,7 +47,7 @@ public class ServerThread extends Thread{
 		// do the work here
 	}
 
-	public synchronized static void updatePlayer(Player player, int delta_x, int delta_y, String direction)
+	public static void updatePlayer(Player player, int delta_x, int delta_y, String direction)
 	{
 		player.setDirection(direction);
 		int x = player.getXpos(),y = player.getYpos();

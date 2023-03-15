@@ -117,13 +117,13 @@ public class Gui extends Application {
 		}
 	}
 	
-	public static void removePlayerOnScreen(pair oldpos) {
+	public synchronized static void removePlayerOnScreen(pair oldpos) {
 		Platform.runLater(() -> {
 			fields[oldpos.getX()][oldpos.getY()].setGraphic(new ImageView(image_floor));
 			});
 	}
 	
-	public synchronized static void placePlayerOnScreen(pair newpos,String direction) {
+	public static void placePlayerOnScreen(pair newpos,String direction) {
 		Platform.runLater(() -> {
 			int newx = newpos.getX();
 			int newy = newpos.getY();
@@ -156,7 +156,7 @@ public class Gui extends Application {
 			scoreList.setText(getScoreList());
 			});
 	}
-	public synchronized void playerMoved(int delta_x, int delta_y, String direction) {
+	public void playerMoved(int delta_x, int delta_y, String direction) {
 		try {
 			App.outToServer.writeBytes(delta_x+","+delta_y+","+direction+"\n");
 		}
