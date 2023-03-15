@@ -20,7 +20,7 @@ public class klientNetworkThread extends Thread {
         this.connSocket = connSocket;
     }
 
-    public synchronized void run() {
+    public void run() {
         try {
             Thread.sleep(3000);
             BufferedReader inFromServer = new BufferedReader(new InputStreamReader(connSocket.getInputStream()));

@@ -23,6 +23,14 @@ public class Player {
 		this.outToClient = outToClient;
 	}
 
+	public synchronized void sendMessage(String message){
+		try {
+			outToClient.writeBytes(message + '\n');
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public String getName() {
 		return name;
 	}

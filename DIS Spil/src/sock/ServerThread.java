@@ -38,7 +38,7 @@ public class ServerThread extends Thread{
 				//System.out.println(playerInfo);
 				for (Player p : GameLogic.players) {
 					System.out.println(playerInfo);
-					p.getOutToClient().writeBytes(playerInfo + '\n');
+					p.sendMessage(playerInfo);
 				}
 			}
 		} catch (IOException e) {

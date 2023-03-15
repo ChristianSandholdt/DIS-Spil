@@ -117,7 +117,7 @@ public class Gui extends Application {
 		}
 	}
 	
-	public synchronized static void removePlayerOnScreen(pair oldpos) {
+	public static void removePlayerOnScreen(pair oldpos) {
 		Platform.runLater(() -> {
 			fields[oldpos.getX()][oldpos.getY()].setGraphic(new ImageView(image_floor));
 			});
