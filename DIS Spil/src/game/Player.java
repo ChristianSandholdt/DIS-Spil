@@ -6,6 +6,10 @@ public class Player {
 	int point;
 	String direction;
 
+	public String getName() {
+		return name;
+	}
+
 	public Player(String name, pair loc, String direction) {
 		this.name = name;
 		this.location = loc;

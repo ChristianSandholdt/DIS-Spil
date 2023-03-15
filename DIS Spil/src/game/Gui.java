@@ -1,5 +1,6 @@
 package game;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -156,8 +157,14 @@ public class Gui extends Application {
 			});
 	}
 	public void playerMoved(int delta_x, int delta_y, String direction) {
-		GameLogic.updatePlayer(delta_x,delta_y,direction);
-		updateScoreTable();
+		try {
+			App.outToServer.writeBytes(delta_x+","+delta_y+","+direction+"\n");
+		}
+		catch (IOException e) {
+			System.out.println("Error writing to server");
+		}
+		//updatePlayer(delta_x,delta_y,direction);
+		//updateScoreTable();
 	}
 	
 	public String getScoreList() {

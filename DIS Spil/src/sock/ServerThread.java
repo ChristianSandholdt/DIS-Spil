@@ -1,8 +1,5 @@
 package sock;
-import game.ConcurrentArrayList;
-import game.GameLogic;
-import game.Player;
-import game.pair;
+import game.*;
 
 import java.net.*;
 import java.io.*;
@@ -27,20 +24,50 @@ public class ServerThread extends Thread{
 			}
 			String playerName = inFromClient.readLine();
 			GameLogic.makePlayers(playerName);
-			for (Player p : GameLogic.players) {
-				System.out.println(p.getXpos() + "," + p.getYpos() + "," + p.getDirection());
-				outToClient.writeBytes(p.getXpos() + "," + p.getYpos() + "," + p.getDirection() + '\n');
-				GameLogic.me = p;
-			}
 			// Cannot assign field "direction" because "game.GameLogic.me" is null
 			while (true) {
-				String updatePosition = inFromClient.readLine();
-				String[] playerInfo = updatePosition.split(",");
-				GameLogic.updatePlayer(Integer.parseInt(playerInfo[0]), Integer.parseInt(playerInfo[1]), playerInfo[2]);
+				StringBuilder sb = new StringBuilder();
+				String moveSet = inFromClient.readLine();
+				String[] moves = moveSet.split(",");
+				updatePlayer(GameLogic.me, Integer.parseInt(moves[0]), Integer.parseInt(moves[1]), moves[2]);
+
+				for (Player p : GameLogic.players) {
+					//updatePlayer(p,p.getXpos(),p.getXpos(),p.getDirection());
+					sb.append(p.getName() + "," + p.getXpos() + "," + p.getYpos() + "," + p.getDirection() + ",");
+				}
+				String playerInfo = sb.toString();
+				//System.out.println(playerInfo);
+				outToClient.writeBytes(playerInfo + '\n');
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}		
 		// do the work here
+	}
+
+	public static void updatePlayer(Player player, int delta_x, int delta_y, String direction)
+	{
+		player.setDirection(direction);
+		int x = player.getXpos(),y = player.getYpos();
+
+		if (Generel.board[y+delta_y].charAt(x+delta_x)=='w') {
+			player.addPoints(-1);
+		}
+		else {
+			// collision detection
+			Player p = GameLogic.getPlayerAt(x+delta_x,y+delta_y);
+			if (p!=null) {
+				player.addPoints(10);
+				//update the other player
+				p.addPoints(-10);
+				pair pa = GameLogic.getRandomFreePosition();
+				p.setLocation(pa);
+				pair oldpos = new pair(x+delta_x,y+delta_y);
+			} else
+				player.addPoints(1);
+			pair oldpos = player.getLocation();
+			pair newpos = new pair(x+delta_x,y+delta_y);
+			player.setLocation(newpos);
+		}
 	}
 }

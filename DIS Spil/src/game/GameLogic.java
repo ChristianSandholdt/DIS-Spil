@@ -50,7 +50,7 @@ public class GameLogic {
 
 		if (Generel.board[y+delta_y].charAt(x+delta_x)=='w') {
 			me.addPoints(-1);
-		} 
+		}
 		else {
 			// collision detection
 			Player p = getPlayerAt(x+delta_x,y+delta_y);
@@ -62,10 +62,10 @@ public class GameLogic {
               p.setLocation(pa);
               pair oldpos = new pair(x+delta_x,y+delta_y);
               Gui.movePlayerOnScreen(oldpos,pa,p.direction);
-			} else 
+			} else
 				me.addPoints(1);
 			pair oldpos = me.getLocation();
-			pair newpos = new pair(x+delta_x,y+delta_y); 
+			pair newpos = new pair(x+delta_x,y+delta_y);
 			Gui.movePlayerOnScreen(oldpos,newpos,direction);
 			me.setLocation(newpos);
 		}
