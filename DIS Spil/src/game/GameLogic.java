@@ -12,10 +12,11 @@ public class GameLogic {
 	public static Player me;
 	
 	
-	public static void makePlayers(String name) {
+	public static Player makePlayers(String name) {
 		pair p=getRandomFreePosition();
 		me = new Player(name,p,"up");
 		players.add(me);
+		return me;
 	}
 	
 	public static pair getRandomFreePosition()

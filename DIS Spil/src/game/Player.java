@@ -1,10 +1,22 @@
 package game;
 
+import java.io.DataOutputStream;
+
 public class Player {
 	String name;
 	pair location;
 	int point;
 	String direction;
+
+	DataOutputStream outToClient;
+
+	public DataOutputStream getOutToClient() {
+		return outToClient;
+	}
+
+	public void setOutToClient(DataOutputStream outToClient) {
+		this.outToClient = outToClient;
+	}
 
 	public String getName() {
 		return name;

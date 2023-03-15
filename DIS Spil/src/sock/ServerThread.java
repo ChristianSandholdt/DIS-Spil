@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ServerThread extends Thread{
 	Socket connSocket;
-	private Player player;
+	Player player;
 	
 	public ServerThread(Socket connSocket) {
 		this.connSocket = connSocket;
@@ -23,7 +23,8 @@ public class ServerThread extends Thread{
 				outToClient.writeBytes("GameIsGo" + '\n' );
 			}
 			String playerName = inFromClient.readLine();
-			GameLogic.makePlayers(playerName);
+			this.player = GameLogic.makePlayers(playerName);
+			player.setOutToClient(outToClient);
 			// Cannot assign field "direction" because "game.GameLogic.me" is null
 			while (true) {
 				StringBuilder sb = new StringBuilder();
@@ -37,7 +38,9 @@ public class ServerThread extends Thread{
 				}
 				String playerInfo = sb.toString();
 				//System.out.println(playerInfo);
-				outToClient.writeBytes(playerInfo + '\n');
+				for (Player p : GameLogic.players) {
+					p.getOutToClient().writeBytes(playerInfo + '\n');
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
