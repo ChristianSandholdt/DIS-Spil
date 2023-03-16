@@ -8,6 +8,7 @@ import java.util.List;
 public class ServerThread extends Thread{
 	Socket connSocket;
 	Player player;
+	Fruit fruit;
 	
 	public ServerThread(Socket connSocket) {
 		this.connSocket = connSocket;
@@ -25,6 +26,10 @@ public class ServerThread extends Thread{
 			String playerName = inFromClient.readLine();
 			this.player = GameLogic.makePlayers(playerName);
 			player.setOutToClient(outToClient);
+			GameLogic.makeFruit();
+			for (Fruit f : GameLogic.fruits) {
+				f.sendFruit("Fruit," + f.getXpos() + "," + f.getYpos());
+			}
 			// Cannot assign field "direction" because "game.GameLogic.me" is null
 			while (true) {
 				StringBuilder sb = new StringBuilder();
@@ -64,10 +69,7 @@ public class ServerThread extends Thread{
 				p.addPoints(-10);
 				pair pa = GameLogic.getRandomFreePosition();
 				p.setLocation(pa);
-				pair oldpos = new pair(x+delta_x,y+delta_y);
-			} else
-				player.addPoints(1);
-			pair oldpos = player.getLocation();
+			}
 			pair newpos = new pair(x+delta_x,y+delta_y);
 			player.setLocation(newpos);
 		}

@@ -26,8 +26,7 @@ public class Gui extends Application {
 	public static Image image_wall;
 	public static Image hero_right,hero_left,hero_up,hero_down;
 
-	
-
+	public static Image fruit;
 	private static Label[][] fields;
 	private static TextArea scoreList;
 	
@@ -68,6 +67,7 @@ public class Gui extends Application {
 			hero_left   = new Image(getClass().getResourceAsStream("Image/heroLeft.png"),size,size,false,false);
 			hero_up     = new Image(getClass().getResourceAsStream("Image/heroUp.png"),size,size,false,false);
 			hero_down   = new Image(getClass().getResourceAsStream("Image/heroDown.png"),size,size,false,false);
+			fruit       = new Image(getClass().getResourceAsStream("Image/fruit.png"),size,size,false,false);
 
 			fields = new Label[20][20];
 			for (int j=0; j<20; j++) {
@@ -139,6 +139,14 @@ public class Gui extends Application {
 			if (direction.equals("down")) {
 				fields[newx][newy].setGraphic(new ImageView(hero_down));
 			};
+			});
+	}
+
+	public static void placeFruitOnScreen(pair newpos) {
+		Platform.runLater(() -> {
+			int newx = newpos.getX();
+			int newy = newpos.getY();
+			fields[newx][newy].setGraphic(new ImageView(fruit));
 			});
 	}
 	

@@ -1,9 +1,6 @@
 package sock;
 
-import game.GameLogic;
-import game.Gui;
-import game.Player;
-import game.pair;
+import game.*;
 import javafx.util.Pair;
 
 import java.io.BufferedReader;
@@ -32,9 +29,15 @@ public class klientNetworkThread extends Thread {
 //                //System.out.println(playerInfo[0] + " " + playerInfo[1] + " " + playerInfo[2]);
 //                pair pair = new pair(Integer.parseInt(playerInfo[0]), Integer.parseInt(playerInfo[1]));
 //                Gui.placePlayerOnScreen(pair, playerInfo[2]);
-                String serverData = inFromServer.readLine();
-                System.out.println(serverData);
-                String[] playerInfo = serverData.split(",");
+                String playerData = inFromServer.readLine();
+                System.out.println(playerData);
+                String[] playerInfo = playerData.split(",");
+                String fruitData = inFromServer.readLine();
+                String[] fruitInfo = fruitData.split(",");
+                for (Fruit f : GameLogic.fruits){
+                    pair pair = new pair(f.getXpos(), f.getYpos());
+                    Gui.placeFruitOnScreen(pair);
+                }
                 for (Player p : GameLogic.players){
                     pair pair = new pair(p.getXpos(), p.getYpos());
                     Gui.removePlayerOnScreen(pair);

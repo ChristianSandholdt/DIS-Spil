@@ -8,7 +8,7 @@ import sock.klientNetworkThread;
 public class App {
 	static DataOutputStream outToServer;
 	public static void main(String[] args) throws Exception {
-		Socket s = new Socket("10.10.138.202", 6969);
+		Socket s = new Socket("10.10.138.156", 6969);
 		klientNetworkThread knt = new klientNetworkThread(s);
 		BufferedReader inFromServer = new BufferedReader(new InputStreamReader(s.getInputStream()));
 		outToServer = new DataOutputStream(s.getOutputStream());
