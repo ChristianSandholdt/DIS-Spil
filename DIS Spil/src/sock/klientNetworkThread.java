@@ -26,7 +26,7 @@ public class klientNetworkThread extends Thread {
             // and then updates the player on the screen
             while (true) {
                 String serverData = inFromServer.readLine();
-                String[] serverInfo = serverData.split(" ");
+                String[] serverInfo = serverData.split("'");
                 String fruitData = serverInfo[1];
                 System.out.println(fruitData);
                 String[] fruitInfo = fruitData.split(",");
