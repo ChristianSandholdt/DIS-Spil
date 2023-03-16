@@ -28,7 +28,7 @@ public class ServerThread extends Thread{
 			player.setOutToClient(outToClient);
 			GameLogic.makeFruit();
 			for (Fruit f : GameLogic.fruits) {
-				f.sendFruit("Fruit," + f.getXpos() + "," + f.getYpos());
+				f.sendFruit(f.getXpos() + "," + f.getYpos());
 			}
 			// Cannot assign field "direction" because "game.GameLogic.me" is null
 			while (true) {
