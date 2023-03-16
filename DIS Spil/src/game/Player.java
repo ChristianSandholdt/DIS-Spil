@@ -15,10 +15,6 @@ public class Player {
 
 	DataOutputStream outToClient;
 
-	public DataOutputStream getOutToClient() {
-		return outToClient;
-	}
-
 	public void setOutToClient(DataOutputStream outToClient) {
 		this.outToClient = outToClient;
 	}
