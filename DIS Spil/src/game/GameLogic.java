@@ -10,7 +10,8 @@ public class GameLogic {
 
 	public static List<Player> players = new ArrayList<Player>();
 	public static Player me;
-	public static Fruit[] fruits = new Fruit[5];
+	public static List<Fruit> fruits = new ArrayList<>();
+	public static Fruit fruit;
 	
 	
 	public static Player makePlayers(String name) {
@@ -20,11 +21,11 @@ public class GameLogic {
 		return me;
 	}
 
-	public static void makeFruit() {
-		for (int i = 0; i < 5; i++) {
-			pair p = getRandomFreePosition();
-			fruits[i] = new Fruit(p);
-		}
+	public static Fruit makeFruit() {
+		pair p = getRandomFreePosition();
+		fruit = new Fruit(p);
+		fruits.add(fruit);
+		return fruit;
 	}
 	
 	public static pair getRandomFreePosition()

@@ -26,10 +26,9 @@ public class ServerThread extends Thread{
 			String playerName = inFromClient.readLine();
 			this.player = GameLogic.makePlayers(playerName);
 			player.setOutToClient(outToClient);
-			GameLogic.makeFruit();
-			for (Fruit f : GameLogic.fruits) {
-				f.sendFruit(f.getXpos() + "," + f.getYpos());
-			}
+			this.fruit = GameLogic.makeFruit();
+			fruit.setOutToClient(outToClient);
+
 			// Cannot assign field "direction" because "game.GameLogic.me" is null
 			while (true) {
 				StringBuilder sb = new StringBuilder();
@@ -44,6 +43,9 @@ public class ServerThread extends Thread{
 				for (Player p : GameLogic.players) {
 					System.out.println(playerInfo);
 					p.sendMessage(playerInfo);
+				}
+				for (Fruit f : GameLogic.fruits) {
+					f.sendFruit(f.getXpos() + "," + f.getYpos());
 				}
 			}
 		} catch (IOException e) {
