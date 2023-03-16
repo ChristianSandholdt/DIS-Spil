@@ -44,13 +44,13 @@ public class ServerThread extends Thread{
 				String playerInfo = sb.toString();
 				String fruitInfo = fsb.toString();
 				//System.out.println(playerInfo);
-				for (Fruit f : GameLogic.fruits) {
-					System.out.println(fruitInfo);
-					f.sendFruit(fruitInfo);
-				}
+//				for (Fruit f : GameLogic.fruits) {
+//					//System.out.println(fruitInfo);
+//					f.sendFruit(fruitInfo);
+//				}
 				for (Player p : GameLogic.players) {
-					System.out.println(playerInfo);
-					p.sendMessage(playerInfo);
+					//System.out.println(playerInfo);
+					p.sendMessage(playerInfo + " " + fruitInfo);
 				}
 			}
 		} catch (IOException e) {

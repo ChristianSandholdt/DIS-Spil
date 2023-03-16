@@ -25,16 +25,14 @@ public class klientNetworkThread extends Thread {
             // write a string split that gets the player x the player y and the player direction
             // and then updates the player on the screen
             while (true) {
-//                String[] playerInfo = inFromServer.readLine().split(",");
-//                //System.out.println(playerInfo[0] + " " + playerInfo[1] + " " + playerInfo[2]);
-//                pair pair = new pair(Integer.parseInt(playerInfo[0]), Integer.parseInt(playerInfo[1]));
-//                Gui.placePlayerOnScreen(pair, playerInfo[2]);
-                String fruitData = inFromServer.readLine();
+                String serverData = inFromServer.readLine();
+                String[] serverInfo = serverData.split(" ");
+                String fruitData = serverInfo[0];
                 String[] fruitInfo = fruitData.split(",");
-                String playerData = inFromServer.readLine();
+                String playerData = serverInfo[1];
                 String[] playerInfo = playerData.split(",");
-                System.out.println(fruitData);
-                System.out.println(playerData);
+                //System.out.println(fruitData);
+                //System.out.println(playerData);
                 for (Fruit f : GameLogic.fruits) {
                     pair pair = new pair(f.getXpos(), f.getYpos());
                     Gui.removeFruitOnScreen(pair);
