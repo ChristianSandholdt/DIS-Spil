@@ -9,8 +9,6 @@ public class ServerThread extends Thread{
 	Socket connSocket;
 	Player player;
 	Fruit fruit;
-
-	static DataOutputStream outToClient;
 	
 	public ServerThread(Socket connSocket) {
 		this.connSocket = connSocket;
@@ -19,7 +17,7 @@ public class ServerThread extends Thread{
 	public void run() {
 		try {
 			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connSocket.getInputStream()));
-			outToClient = new DataOutputStream(connSocket.getOutputStream());
+			DataOutputStream outToClient = new DataOutputStream(connSocket.getOutputStream());
 			String clientSentence = inFromClient.readLine();
 			System.out.println(clientSentence);
 			if (clientSentence.equals("ConnectionEstablished")) {
@@ -46,13 +44,13 @@ public class ServerThread extends Thread{
 				String playerInfo = sb.toString();
 				String fruitInfo = fsb.toString();
 				//System.out.println(playerInfo);
-				for (Player p : GameLogic.players) {
-					System.out.println(playerInfo);
-					p.sendMessage(playerInfo);
-				}
 				for (Fruit f : GameLogic.fruits) {
 					System.out.println(fruitInfo);
 					f.sendFruit(fruitInfo);
+				}
+				for (Player p : GameLogic.players) {
+					System.out.println(playerInfo);
+					p.sendMessage(playerInfo);
 				}
 			}
 		} catch (IOException e) {
@@ -74,10 +72,8 @@ public class ServerThread extends Thread{
 			Player p = GameLogic.getPlayerAt(x+delta_x,y+delta_y);
 			Fruit fruit = GameLogic.getFruitAt(x+delta_x,y+delta_y);
 			if (fruit!=null) {
-				if (fruit.getXpos() == player.getXpos() && fruit.getYpos() == player.getYpos()) {
-					player.addPoints(25);
-					updateFruit(fruit);
-				}
+				player.addPoints(25);
+				updateFruit(fruit);
 			}
 			if (p!=null) {
 				player.addPoints(10);
