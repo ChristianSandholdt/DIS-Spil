@@ -36,22 +36,22 @@ public class ServerThread extends Thread{
 				String moveSet = inFromClient.readLine();
 				String[] moves = moveSet.split(",");
 				updatePlayer(player, Integer.parseInt(moves[0]), Integer.parseInt(moves[1]), moves[2]);
-				for (Fruit f : GameLogic.fruits) {
-					fsb.append(f.getXpos() + "," + f.getYpos() + ",");
-				}
 				for (Player p : GameLogic.players) {
 					sb.append(p.getName() + "," + p.getXpos() + "," + p.getYpos() + "," + p.getDirection() + "," + p.getPoints() + ",");
 				}
-				String fruitInfo = fsb.toString();
-				String playerInfo = sb.toString();
-				//System.out.println(playerInfo);
 				for (Fruit f : GameLogic.fruits) {
-					System.out.println(fruitInfo);
-					f.sendFruit(fruitInfo);
+					fsb.append(f.getXpos() + "," + f.getYpos() + ",");
 				}
+				String playerInfo = sb.toString();
+				String fruitInfo = fsb.toString();
+				//System.out.println(playerInfo);
 				for (Player p : GameLogic.players) {
 					System.out.println(playerInfo);
 					p.sendMessage(playerInfo);
+				}
+				for (Fruit f : GameLogic.fruits) {
+					System.out.println(fruitInfo);
+					f.sendFruit(fruitInfo);
 				}
 			}
 		} catch (IOException e) {

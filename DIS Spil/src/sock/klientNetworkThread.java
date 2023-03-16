@@ -29,11 +29,16 @@ public class klientNetworkThread extends Thread {
 //                //System.out.println(playerInfo[0] + " " + playerInfo[1] + " " + playerInfo[2]);
 //                pair pair = new pair(Integer.parseInt(playerInfo[0]), Integer.parseInt(playerInfo[1]));
 //                Gui.placePlayerOnScreen(pair, playerInfo[2]);
-                String fruitData = inFromServer.readLine();
-                String[] fruitInfo = fruitData.split(",");
                 String playerData = inFromServer.readLine();
                 System.out.println(playerData);
                 String[] playerInfo = playerData.split(",");
+                String fruitData = inFromServer.readLine();
+                String[] fruitInfo = fruitData.split(",");
+                System.out.println(fruitData);
+                for (Fruit f : GameLogic.fruits) {
+                    pair pair = new pair(f.getXpos(), f.getYpos());
+                    Gui.removeFruitOnScreen(pair);
+                }
                 for (int i = 0; i < fruitInfo.length; i+= 2) {
                     pair pair = new pair(Integer.parseInt(fruitInfo[i]), Integer.parseInt(fruitInfo[i+1]));
                     GameLogic.fruits.add(new Fruit(pair));
