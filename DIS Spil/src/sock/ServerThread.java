@@ -32,23 +32,26 @@ public class ServerThread extends Thread{
 			// Cannot assign field "direction" because "game.GameLogic.me" is null
 			while (true) {
 				StringBuilder sb = new StringBuilder();
+				StringBuilder fsb = new StringBuilder();
 				String moveSet = inFromClient.readLine();
 				String[] moves = moveSet.split(",");
 				updatePlayer(player, Integer.parseInt(moves[0]), Integer.parseInt(moves[1]), moves[2]);
+				for (Fruit f : GameLogic.fruits) {
+					fsb.append(f.getXpos() + "," + f.getYpos() + ",");
+				}
 				for (Player p : GameLogic.players) {
 					sb.append(p.getName() + "," + p.getXpos() + "," + p.getYpos() + "," + p.getDirection() + "," + p.getPoints() + ",");
 				}
+				String fruitInfo = fsb.toString();
 				String playerInfo = sb.toString();
 				//System.out.println(playerInfo);
+				for (Fruit f : GameLogic.fruits) {
+					System.out.println(fruitInfo);
+					f.sendFruit(fruitInfo);
+				}
 				for (Player p : GameLogic.players) {
 					System.out.println(playerInfo);
 					p.sendMessage(playerInfo);
-				}
-				if (GameLogic.fruits.size() < 5) {
-					updateFruit(fruit);
-				}
-				for (Fruit f : GameLogic.fruits) {
-					f.sendFruit(f.getXpos() + "," + f.getYpos());
 				}
 			}
 		} catch (IOException e) {
@@ -70,7 +73,7 @@ public class ServerThread extends Thread{
 			Player p = GameLogic.getPlayerAt(x+delta_x,y+delta_y);
 			Fruit fruit = GameLogic.getFruitAt(x+delta_x,y+delta_y);
 			if (fruit.getXpos() == player.getXpos() && fruit.getYpos() == player.getYpos()) {
-				player.addPoints(1);
+				player.addPoints(25);
 				fruit = GameLogic.makeFruit();
 			}
 			if (p!=null) {
