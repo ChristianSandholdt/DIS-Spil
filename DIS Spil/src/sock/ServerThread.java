@@ -9,6 +9,8 @@ public class ServerThread extends Thread{
 	Socket connSocket;
 	Player player;
 	Fruit fruit;
+
+	static DataOutputStream outToClient;
 	
 	public ServerThread(Socket connSocket) {
 		this.connSocket = connSocket;
@@ -17,7 +19,7 @@ public class ServerThread extends Thread{
 	public void run() {
 		try {
 			BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connSocket.getInputStream()));
-			DataOutputStream outToClient = new DataOutputStream(connSocket.getOutputStream());
+			outToClient = new DataOutputStream(connSocket.getOutputStream());
 			String clientSentence = inFromClient.readLine();
 			System.out.println(clientSentence);
 			if (clientSentence.equals("ConnectionEstablished")) {
@@ -28,7 +30,6 @@ public class ServerThread extends Thread{
 			player.setOutToClient(outToClient);
 			this.fruit = GameLogic.makeFruit();
 			fruit.setOutToClient(outToClient);
-
 			// Cannot assign field "direction" because "game.GameLogic.me" is null
 			while (true) {
 				StringBuilder sb = new StringBuilder();
@@ -72,9 +73,11 @@ public class ServerThread extends Thread{
 			// collision detection
 			Player p = GameLogic.getPlayerAt(x+delta_x,y+delta_y);
 			Fruit fruit = GameLogic.getFruitAt(x+delta_x,y+delta_y);
-			if (fruit.getXpos() == player.getXpos() && fruit.getYpos() == player.getYpos()) {
-				player.addPoints(25);
-				fruit = GameLogic.makeFruit();
+			if (fruit!=null) {
+				if (fruit.getXpos() == player.getXpos() && fruit.getYpos() == player.getYpos()) {
+					player.addPoints(25);
+					updateFruit(fruit);
+				}
 			}
 			if (p!=null) {
 				player.addPoints(10);

@@ -32,7 +32,7 @@ public class Fruit {
         this.location = location;
     }
 
-    public static int getXpos() {
+    public int getXpos() {
         return location.x;
     }
 
@@ -40,7 +40,7 @@ public class Fruit {
         this.location.x = xpos;
     }
 
-    public static int getYpos() {
+    public int getYpos() {
         return location.y;
     }
 
