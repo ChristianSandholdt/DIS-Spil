@@ -44,6 +44,9 @@ public class ServerThread extends Thread{
 					System.out.println(playerInfo);
 					p.sendMessage(playerInfo);
 				}
+				if (GameLogic.fruits.size() < 5) {
+					updateFruit(fruit);
+				}
 				for (Fruit f : GameLogic.fruits) {
 					f.sendFruit(f.getXpos() + "," + f.getYpos());
 				}
@@ -82,8 +85,8 @@ public class ServerThread extends Thread{
 		}
 	}
 
-//	public static void updateFruit(Fruit fruit) {
-//		pair pa = GameLogic.getRandomFreePosition();
-//		fruit.setLocation(pa);
-//	}
+	public static void updateFruit(Fruit fruit) {
+		pair pa = GameLogic.getRandomFreePosition();
+		fruit.setLocation(pa);
+	}
 }
