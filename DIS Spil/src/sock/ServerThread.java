@@ -65,6 +65,11 @@ public class ServerThread extends Thread{
 		else {
 			// collision detection
 			Player p = GameLogic.getPlayerAt(x+delta_x,y+delta_y);
+			Fruit fruit = GameLogic.getFruitAt(x+delta_x,y+delta_y);
+			if (fruit.getXpos() == player.getXpos() && fruit.getYpos() == player.getYpos()) {
+				player.addPoints(1);
+				fruit = GameLogic.makeFruit();
+			}
 			if (p!=null) {
 				player.addPoints(10);
 				//update the other player
@@ -76,4 +81,9 @@ public class ServerThread extends Thread{
 			player.setLocation(newpos);
 		}
 	}
+
+//	public static void updateFruit(Fruit fruit) {
+//		pair pa = GameLogic.getRandomFreePosition();
+//		fruit.setLocation(pa);
+//	}
 }

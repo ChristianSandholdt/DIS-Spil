@@ -46,6 +46,11 @@ public class GameLogic {
 					if (p.getXpos()==x && p.getYpos()==y) //pladsen optaget af en anden 
 						foundfreepos = false;
 				}
+
+				for (Fruit f: fruits) {
+					if (f.getXpos()==x && f.getYpos()==y) //pladsen optaget af en anden
+						foundfreepos = false;
+				}
 				
 			}
 		}
@@ -85,6 +90,15 @@ public class GameLogic {
 		for (Player p : players) {
 			if (p.getXpos()==x && p.getYpos()==y) {
 				return p;
+			}
+		}
+		return null;
+	}
+
+	public static Fruit getFruitAt(int x, int y) {
+		for (Fruit f : fruits) {
+			if (f.getXpos()==x && f.getYpos()==y) {
+				return f;
 			}
 		}
 		return null;
