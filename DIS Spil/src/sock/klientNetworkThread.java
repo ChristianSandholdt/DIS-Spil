@@ -27,9 +27,11 @@ public class klientNetworkThread extends Thread {
             while (true) {
                 String serverData = inFromServer.readLine();
                 String[] serverInfo = serverData.split(" ");
-                String fruitData = serverInfo[0];
+                String fruitData = serverInfo[1];
+                System.out.println(fruitData);
                 String[] fruitInfo = fruitData.split(",");
-                String playerData = serverInfo[1];
+                String playerData = serverInfo[0];
+                System.out.println(playerData);
                 String[] playerInfo = playerData.split(",");
                 //System.out.println(fruitData);
                 //System.out.println(playerData);
