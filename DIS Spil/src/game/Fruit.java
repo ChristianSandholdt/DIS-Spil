@@ -16,14 +16,6 @@ public class Fruit {
         this.outToClient = outToClient;
     }
 
-    public synchronized void sendFruit(String message){
-        try {
-            outToClient.writeBytes(message + '\n');
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public pair getLocation() {
         return location;
     }
@@ -35,17 +27,8 @@ public class Fruit {
     public int getXpos() {
         return location.x;
     }
-
-    public void setXpos(int xpos) {
-        this.location.x = xpos;
-    }
-
     public int getYpos() {
         return location.y;
-    }
-
-    public void setYpos(int ypos) {
-        this.location.y = ypos;
     }
 
 }
