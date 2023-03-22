@@ -51,39 +51,11 @@ public class GameLogic {
 					if (f.getXpos()==x && f.getYpos()==y) //pladsen optaget af en anden
 						foundfreepos = false;
 				}
-				
+
 			}
 		}
 		pair p = new pair(x,y);
 		return p;
-	}
-	
-	public static void updatePlayer(int delta_x, int delta_y, String direction)
-	{
-		me.direction = direction;
-		int x = me.getXpos(),y = me.getYpos();
-
-		if (Generel.board[y+delta_y].charAt(x+delta_x)=='w') {
-			me.addPoints(-1);
-		}
-		else {
-			// collision detection
-			Player p = getPlayerAt(x+delta_x,y+delta_y);
-			if (p!=null) {
-              me.addPoints(10);
-              //update the other player
-              p.addPoints(-10);
-              pair pa = getRandomFreePosition();
-              p.setLocation(pa);
-              pair oldpos = new pair(x+delta_x,y+delta_y);
-              Gui.movePlayerOnScreen(oldpos,pa,p.direction);
-			} else
-				me.addPoints(1);
-			pair oldpos = me.getLocation();
-			pair newpos = new pair(x+delta_x,y+delta_y);
-			Gui.movePlayerOnScreen(oldpos,newpos,direction);
-			me.setLocation(newpos);
-		}
 	}
 	
 	public static Player getPlayerAt(int x, int y) {

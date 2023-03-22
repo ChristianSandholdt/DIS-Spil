@@ -4,7 +4,7 @@ import java.io.DataOutputStream;
 
 public class Fruit {
 
-    static pair location;
+    pair location;
 
     DataOutputStream outToClient;
 
